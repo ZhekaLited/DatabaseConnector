@@ -77,6 +77,14 @@ getString() возвращает значение String
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, name);
             preparedStatement.setString(2, price);
+            Все методы, которые поставляют значения вместо знаков подстановки, в качестве первого параметра принимают порядковый номер знака подстановки 
+            (нумерация начинается с 1), а в качестве второго параметра - собственно значение, которое вставляется вместо знака подстановки.
+                
+            Например, первый знак подстановки ? в выражении sql представляет значение для столбца ProductName, который хранит строку.
+            Поэтому для связи значения с первым знаком подстановки применяется метод preparedStatement.setString(1, name).
+
+            Второй знак подстановки должен передавать значение для столбца Price, который хранит целые числа. 
+            Поэтому для вставик значения используется метод preparedStatement.setString(2, price)
 
             int rows = preparedStatement.executeUpdate();
 
