@@ -20,7 +20,6 @@ public class Main {
 /*
 
              //int rows = statement.executeUpdate("INSERT INTO `counrywork`.`employees` (`FIRST_NAME`, `LAST_NAME`) VALUES ('Дима', 'Павлов');");
-
           //  System.out.printf("Added %d rows",rows); //Это для ее изменение из базы
 
 
