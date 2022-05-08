@@ -8,7 +8,6 @@ import java.sql.Statement;
 public class Main {
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        System.out.println("awd");
         //Class.forName("com.mysql.jdbc.Driver");
         try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/counrywork", "root", "root")) {
             Statement statement = connection.createStatement();
