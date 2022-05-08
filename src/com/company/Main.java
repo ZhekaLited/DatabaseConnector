@@ -85,9 +85,53 @@ getString() возвращает значение String
 
             Второй знак подстановки должен передавать значение для столбца Price, который хранит целые числа. 
             Поэтому для вставик значения используется метод preparedStatement.setString(2, price)
+                
+            Кроме setString и setInt PreparedStatement имеет еще ряд подобных методов, которые работают подобным образом. Некоторые из них:
+
+setBigDecimal
+
+setBoolean
+
+setDate
+
+setDouble
+
+setFloat
+
+setLong
+
+setNull
+
+setTime
 
             int rows = preparedStatement.executeUpdate();
 
             System.out.printf("%d rows added", rows);
         } // Это вставление данных с консоли при помощью Scanner
+
+Для выполнения запроса PreparedStatement имеет три метода:
+
+boolean execute(): выполняет любую SQL-команду
+
+ResultSet executeQuery(): выполняет команду SELECT, которая возвращает данные в виде ResultSet
+
+int executeUpdate(): выполняет такие SQL-команды, как INSERT, UPDATE, DELETE, CREATE и возвращает количество измененных строк
+
+При этом в отличие от методов Statement эти методы не принимают SQL-выражение.
+    
+    
+    
+Подобным образом мы можем выполнять и другие выражения. Например, получим товары, у которых цена меньше 50000:
+
+int maxPrice = 50000;
+PreparedStatement preparedStatement = conn.prepareStatement("SELECT * FROM Products WHERE Price < ?");
+preparedStatement.setInt(1, maxPrice);
+ResultSet resultSet = preparedStatement.executeQuery();
+while(resultSet.next()){
+                                     
+    int id = resultSet.getInt("Id");
+    String name = resultSet.getString("ProductName");
+    int price = resultSet.getInt("Price");
+                     
+    System.out.printf("%d. %s - %d \n", id, name, price);
 
