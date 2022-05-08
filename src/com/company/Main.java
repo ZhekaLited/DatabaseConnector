@@ -123,6 +123,8 @@ int executeUpdate(): выполняет такие SQL-команды, как IN
     
 Подобным образом мы можем выполнять и другие выражения. Например, получим товары, у которых цена меньше 50000:
 
+
+ОБРАЗЕЦ!!!!!!!!
 int maxPrice = 50000;
 PreparedStatement preparedStatement = conn.prepareStatement("SELECT * FROM Products WHERE Price < ?");
 preparedStatement.setInt(1, maxPrice);
