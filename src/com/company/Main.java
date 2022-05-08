@@ -62,3 +62,24 @@ getString() возвращает значение String
 
 Ссылка для установки драйвера для базы : https://metanit.com/java/database/2.1.php
 Ссылка для подключение баззы данных : https://metanit.com/java/database/2.2.php
+
+  Class.forName("com.mysql.jdbc.Driver");
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/counrywork", "root", "root")) {
+            Statement statement = connection.createStatement();
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Input product name: ");
+            String name = scanner.nextLine();
+
+            System.out.print("Input product price: ");
+            String price = scanner.nextLine();
+
+            String sql = "INSERT INTO Employees (First_Name,Last_Name) Values (?, ?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, price);
+
+            int rows = preparedStatement.executeUpdate();
+
+            System.out.printf("%d rows added", rows);
+        } // Это вставление данных с консоли при помощью Scanner
+
